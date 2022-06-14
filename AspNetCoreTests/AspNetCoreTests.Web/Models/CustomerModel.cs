@@ -15,5 +15,7 @@ namespace AspNetCoreTests.Web.Models
 
         [EmailAddress]
         public string Email { get; set; }
+
+        public string Phone { get; set; }
     }
 }

@@ -39,6 +39,7 @@ namespace AspNetCoreTests.Web
 
             services.AddScoped<IClaimsTransformation, AddRolesClaimsTransformation>();
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IOrderService, OrderService>();
         }
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)

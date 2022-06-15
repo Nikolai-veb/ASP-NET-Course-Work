@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System;
 
 namespace AspNetCoreTests.Web.Models
 {
@@ -11,11 +12,10 @@ namespace AspNetCoreTests.Web.Models
         [Required]
         public string Name { get; set; }
         
-        public string Address { get; set; }
-
         [EmailAddress]
         public string Email { get; set; }
 
         public string Phone { get; set; }
+        public DateTime Created { get; set; }
     }
 }

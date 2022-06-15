@@ -23,13 +23,16 @@ namespace AspNetCoreTests.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Address")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Phone")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -43,28 +46,58 @@ namespace AspNetCoreTests.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Address")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("created")
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ExecutorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<ushort>("Price")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("destinationAddress")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("customerId")
+                    b.Property<int>("numberPassengers")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("executorId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<ushort>("price")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("shippingAddress")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("customerId");
+                    b.HasIndex("CustomerId");
 
-                    b.HasIndex("executorId");
+                    b.HasIndex("ExecutorId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("AspNetCoreTests.Web.Models.CustomerModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomerModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -265,17 +298,17 @@ namespace AspNetCoreTests.Web.Migrations
 
             modelBuilder.Entity("AspNetCoreTests.Web.Data.Order", b =>
                 {
-                    b.HasOne("AspNetCoreTests.Web.Data.Customer", "customer")
+                    b.HasOne("AspNetCoreTests.Web.Models.CustomerModel", "Customer")
                         .WithMany()
-                        .HasForeignKey("customerId");
+                        .HasForeignKey("CustomerId");
 
-                    b.HasOne("AspNetCoreTests.Web.Data.Customer", "executor")
+                    b.HasOne("AspNetCoreTests.Web.Models.CustomerModel", "Executor")
                         .WithMany()
-                        .HasForeignKey("executorId");
+                        .HasForeignKey("ExecutorId");
 
-                    b.Navigation("customer");
+                    b.Navigation("Customer");
 
-                    b.Navigation("executor");
+                    b.Navigation("Executor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

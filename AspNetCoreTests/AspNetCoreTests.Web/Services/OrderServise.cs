@@ -26,8 +26,13 @@ namespace AspNetCoreTests.Web.Services
 
             var model = new OrderModel();
             model.Id = order.Id;
-            model.Address = order.Address;
-            model.price = order.price;
+            model.shippingAddress = order.shippingAddress;
+            model.destinationAddress = order.destinationAddress;
+            model.numberPassengers = order.numberPassengers;
+            model.Customer = order.Customer;
+            model.Executor = order.Executor;
+            model.Status = order.Status;
+            model.Created = order.Created;
 
             return model;
         }
@@ -35,12 +40,13 @@ namespace AspNetCoreTests.Web.Services
         public async Task<IList<OrderModel>> List()
         {
             return await _dataContext.Orders
-                                     .OrderBy(c => c.Address)
+                                     .OrderBy(c => c.Customer)
                                      .Select(c => new OrderModel 
                                      { 
                                         Id = c.Id,
-                                        Address = c.Address,
-                                        price = c.price
+                                        Created = c.Created,
+                                        Price = c.Price,
+                                        Status = c.Status
                                      })
                                      .ToListAsync();
         }
@@ -57,8 +63,12 @@ namespace AspNetCoreTests.Web.Services
                 await _dataContext.Orders.AddAsync(order);
             }
 
-            order.Address = model.Address;
-            order.price = model.price;
+            order.shippingAddress = model.shippingAddress;
+            order.destinationAddress = model.destinationAddress;
+            order.numberPassengers = model.numberPassengers;
+            order.Customer = model.Customer;
+            order.Executor = model.Executor;
+            order.Created = model.Created;
 
             await _dataContext.SaveChangesAsync();
         }

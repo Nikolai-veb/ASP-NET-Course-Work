@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreTests.Web.Migrations
 {
     [DbContext(typeof(DemoDbContext))]
-    [Migration("20220505053206_InitialState")]
-    partial class InitialState
+    [Migration("20220615041942_OrdersImproved")]
+    partial class OrdersImproved
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,7 @@ namespace AspNetCoreTests.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Address")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -34,9 +34,72 @@ namespace AspNetCoreTests.Web.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Phone")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("AspNetCoreTests.Web.Data.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ExecutorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<ushort>("Price")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("destinationAddress")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("numberPassengers")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("shippingAddress")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ExecutorId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("AspNetCoreTests.Web.Models.CustomerModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomerModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -233,6 +296,21 @@ namespace AspNetCoreTests.Web.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("AspNetCoreTests.Web.Data.Order", b =>
+                {
+                    b.HasOne("AspNetCoreTests.Web.Models.CustomerModel", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.HasOne("AspNetCoreTests.Web.Models.CustomerModel", "Executor")
+                        .WithMany()
+                        .HasForeignKey("ExecutorId");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Executor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -26,9 +26,10 @@ namespace AspNetCoreTests.Web.Services
 
             var model = new CustomerModel();
             model.Id = customer.Id;
-            model.Address = customer.Address;
+            model.Phone = customer.Phone;
             model.Email = customer.Email;
             model.Name = customer.Name;
+            model.Created = customer.Created;
 
             return model;
         }
@@ -41,7 +42,7 @@ namespace AspNetCoreTests.Web.Services
                                      { 
                                         Id = c.Id,
                                         Name = c.Name,
-                                        Address = c.Address,
+                                        Phone = c.Phone,
                                         Email = c.Email
                                      })
                                      .ToListAsync();
@@ -59,7 +60,7 @@ namespace AspNetCoreTests.Web.Services
                 await _dataContext.Customers.AddAsync(customer);
             }
 
-            customer.Address = model.Address;
+            customer.Phone = model.Phone;
             customer.Email = model.Email;
             customer.Name = model.Name;
 

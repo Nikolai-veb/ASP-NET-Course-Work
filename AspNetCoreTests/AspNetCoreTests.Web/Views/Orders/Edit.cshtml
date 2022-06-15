@@ -15,17 +15,31 @@
             <input type="hidden" asp-for="Id" />
 
             <div class="form-group row">
-                <label asp-for="price" class="col-sm-2 col-form-label">Price</label>
+                <label asp-for="Price" class="col-sm-2 col-form-label">Сумма заказа</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" asp-for="price" />
-                    <span asp-validation-for="price"></span>
+                    <input type="text" class="form-control" asp-for="Price" />
+                    <span asp-validation-for="Price"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="Address" class="col-sm-2 col-form-label">Address</label>
+                <label asp-for="shippingAddress" class="col-sm-2 col-form-label">Адрес отправки</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" asp-for="Address" />
-                    <span asp-validation-for="Address"></span>
+                    <input type="text" class="form-control" asp-for="shippingAddress" />
+                    <span asp-validation-for="shippingAddress"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="destinationAddress" class="col-sm-2 col-form-label">Адрес назначения</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="destinationAddress" />
+                    <span asp-validation-for="destinationAddress"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="numberPassengers" class="col-sm-2 col-form-label">Количество пасажиров</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="numberPassengers" />
+                    <span asp-validation-for="numberPassengers"></span>
                 </div>
             </div>
             <div class="form-group row">

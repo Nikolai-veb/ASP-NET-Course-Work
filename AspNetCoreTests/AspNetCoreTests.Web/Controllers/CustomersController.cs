@@ -42,7 +42,7 @@ namespace AspNetCoreTests.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View(nameof(Edit));
+            return View();
         }
 
         [HttpPost]
@@ -51,7 +51,7 @@ namespace AspNetCoreTests.Web.Controllers
             return await SaveCustomer(model);
         }
 
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -82,11 +82,6 @@ namespace AspNetCoreTests.Web.Controllers
             if (model == null)
             {
                 return BadRequest();
-            }
-
-            if(!ModelState.IsValid)
-            {
-                return View(nameof(Edit), model);
             }
 
             await _customerService.SaveCustomer(model);

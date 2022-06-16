@@ -23,7 +23,7 @@
         {
             <tr>
                 <td>@customer.Id</td>
-                <td>@customer.Name</td>
+                <td><a asp-action="Details" asp-route-id="@customer.Id">@customer.Name</a></td>
                 <td>@customer.Phone</td>
                 <td>@customer.Email</td>
                 <td>@customer.Created</td>

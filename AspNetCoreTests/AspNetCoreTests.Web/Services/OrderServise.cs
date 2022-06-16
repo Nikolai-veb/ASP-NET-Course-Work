@@ -66,6 +66,7 @@ namespace AspNetCoreTests.Web.Services
             order.shippingAddress = model.shippingAddress;
             order.destinationAddress = model.destinationAddress;
             order.numberPassengers = model.numberPassengers;
+            order.Price = model.Price;
             order.Customer = model.Customer;
             order.Executor = model.Executor;
             order.Created = model.Created;

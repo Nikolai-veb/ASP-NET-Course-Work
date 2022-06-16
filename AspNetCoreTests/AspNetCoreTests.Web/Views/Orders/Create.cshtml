@@ -1,9 +1,9 @@
-﻿@model OrderModel
+@model OrderModel
 @{
-    var title = "Обновление заказа";
+    var title = "Создать заказ";
     if(Model == null || Model.Id == 0)
     {
-        title = "Обновление заказа";
+        title = "Создать заказ";
     }
 }
 
@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <form method="post" asp-action="Edit">
+        <form method="post" asp-action="Create">
             <input type="hidden" asp-for="Id" />
 
             <div class="form-group row">

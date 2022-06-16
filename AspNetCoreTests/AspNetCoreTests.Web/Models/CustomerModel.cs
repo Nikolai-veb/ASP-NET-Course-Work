@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace AspNetCoreTests.Web.Models
 {
@@ -12,7 +13,7 @@ namespace AspNetCoreTests.Web.Models
         [Required]
         public string Name { get; set; }
         
-        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         public string Phone { get; set; }

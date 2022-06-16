@@ -1,15 +1,27 @@
-﻿@model CustomerModel
+﻿@model CustomerModel 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 <div class="row">
-<form>
-
-    <div class="form-group">
-        <label asp-for="Name">Name</label>
-        <input type="text" asp-for="Name" class="form-control" />
-    </div>
-</form>
+    <div class="col-md-6 col-lg-4">
+            <div class="user-stats">
+              <div class="user-stats-id">
+                <div class="user-stats-avatar"><img src="/images/avatarca.jpg" alt="avatar"><span class="user-stats-status-indicator online"></span></div>
+                <div class="user-stats-info"><span class="user-stats-name">@Model.Name</span></div>
+              </div>
+              <div class="user-stats-indicators">
+                <div class="user-stats-indicator"><span class="user-stats-indicator-title">@Model.Phone</span></div>
+                <div class="user-stats-indicator"><span class="user-stats-indicator-title">@Model.Email</span></div>
+                <div class="user-stats-indicator"><span class="user-stats-indicator-title">Services</span></div>
+                <div class="user-stats-indicator"><span class="user-stats-indicator-title">Total Sales</span></div>
+              </div>
+              <div class="user-stats-milestone"><span>Current Progress</span>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-primary" style="width: 45%"></div>
+                </div>
+              </div><a class="user-stats-more-details" href="#">More Details</a>
+            </div>
+          </div>
 </div>

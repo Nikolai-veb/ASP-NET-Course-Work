@@ -63,6 +63,7 @@ namespace AspNetCoreTests.Web.Services
             customer.Phone = model.Phone;
             customer.Email = model.Email;
             customer.Name = model.Name;
+            customer.Created = System.DateTime.Now;
 
             await _dataContext.SaveChangesAsync();
         }
